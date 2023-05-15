@@ -1,0 +1,22 @@
+---
+services:
+  www:
+    image: nginx:1.22
+    container_name: nginx
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - php
+    networks:
+      - lemp
+
+  php:
+    image: php:8.2-fpm
+    container_name: php
+    restart: always
+    networks:
+      - lemp
+
+networks:
+  lemp:
