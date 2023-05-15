@@ -3,19 +3,28 @@ services:
   www:
     image: nginx:1.22
     container_name: nginx
-    restart: always
+    volumes:
+      - ./nginx-config:/etc/nginx/conf.d
+      - ./site:/usr/share/nginx/html
     ports:
       - 80:80
     depends_on:
       - php
-    networks:
+    environment:
+      - TZ=Europe/Paris
+    restart: always
+    network:
       - lemp
 
   php:
     image: php:8.2-fpm
     container_name: php
+    volumes:
+      - ./site:/var/www/html
+    environment:
+      - TZ=Europe/Paris
     restart: always
-    networks:
+    network:
       - lemp
 
 networks:
