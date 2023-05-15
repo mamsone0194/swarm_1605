@@ -11,8 +11,8 @@ services:
     image: ${WWW_IMAGE_NAME}:${WWW_IMAGE_VERSION}
     container_name: nginx
     volumes:
-      - ./nginx-config:/etc/nginx/conf.d
-      - ./site:/usr/share/nginx/html
+      - nginx-config:/etc/nginx/conf.d
+      - site:/usr/share/nginx/html
     ports:
       - 80:80
     depends_on:
@@ -23,8 +23,21 @@ services:
     image: ${PHP_IMAGE_NAME}:${PHP_IMAGE_VERSION}
     container_name: php
     volumes:
-      - ./site:/var/www/html
+      - site:/var/www/html
     <<: *confshared
 
 networks:
   lemp:
+
+volumes:
+  nginx-config:
+    driver_opts:
+      type: nfs
+      o: addr=${NFS_SERVER_ADDR},vers=4.2
+      device: ":/nginx-config"
+
+  site:
+    driver_opts:
+      type: nfs
+      o: addr=${NFS_SERVER_ADDR},vers=4.2
+      device: ":/site"
