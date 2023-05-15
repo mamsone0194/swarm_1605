@@ -9,6 +9,9 @@ services:
       - whonet
     labels:
       - traefik.enable=true
+      - traefik.http.routers.who1.rule=PathPrefix(`/who1`)
+      - traefik.http.middlewares.stripwho1.stripprefix.prefixes=/who1
+      - traefik.http.routers.who1.middlewares=stripwho1
 
   who2:
     image: traefik/whoami
