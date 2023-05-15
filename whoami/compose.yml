@@ -7,6 +7,9 @@ services:
     networks:
       - proxy
       - whonet
+    labels:
+      - traefik.enable=true
+
   who2:
     image: traefik/whoami
     hostname: who2
@@ -14,6 +17,9 @@ services:
     networks:
       - proxy
       - whonet
+    labels:
+      - traefik.enable=true
+
   who3:
     image: traefik/whoami
     hostname: who3
@@ -21,6 +27,8 @@ services:
     networks:
       - proxy
       - whonet
+    labels:
+      - traefik.enable=true
 
 networks:
   whonet:
