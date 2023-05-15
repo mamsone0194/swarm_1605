@@ -10,6 +10,12 @@ services:
   www:
     image: ${WWW_IMAGE_NAME}:${WWW_IMAGE_VERSION}
     container_name: nginx
+    healthcheck:
+      test: ["CMD","curl","-f","http://localhost/index.html"]
+      interval: 15s
+      timeout: 1s
+      retries: 2
+      # start_period: 60s
     volumes:
       - nginx-config:/etc/nginx/conf.d
       - site:/usr/share/nginx/html
