@@ -22,6 +22,7 @@ services:
       - whonet
     labels:
       - traefik.enable=true
+      - traefik.http.routers.who2.rule=Host(`who2.stage`)
 
   who3:
     image: traefik/whoami
