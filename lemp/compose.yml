@@ -19,8 +19,6 @@ services:
     volumes:
       - nginx-config:/etc/nginx/conf.d
       - site:/usr/share/nginx/html
-    ports:
-      - 80:80
     depends_on:
       - php
     <<: *confshared
