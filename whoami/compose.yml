@@ -1,0 +1,20 @@
+---
+services:
+  who1:
+    image: traefik/whoami
+    hostname: who1
+    container_name: who1
+    ports:
+      - 81:80
+  who2:
+    image: traefik/whoami
+    hostname: who2
+    container_name: who2
+    ports:
+      - 82:80
+  who3:
+    image: traefik/whoami
+    hostname: who3
+    container_name: who3
+    ports:
+      - 83:80
