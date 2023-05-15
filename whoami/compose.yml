@@ -33,6 +33,9 @@ services:
       - whonet
     labels:
       - traefik.enable=true
+      - traefik.http.routers.who3.rule=(Host(`who3.stage`) && PathPrefix(`/who3`))
+      - traefik.http.middlewares.stripwho3.stripprefix.prefixes=/who3
+      - traefik.http.routers.who3.middlewares=stripwho3
 
 networks:
   whonet:
