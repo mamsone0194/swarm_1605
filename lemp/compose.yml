@@ -1,4 +1,11 @@
 ---
+x-default: &confshared
+  environment:
+    - TZ=Europe/Paris
+  restart: always
+  networks:
+    - lemp
+
 services:
   www:
     image: nginx:1.22
@@ -10,22 +17,14 @@ services:
       - 80:80
     depends_on:
       - php
-    environment:
-      - TZ=Europe/Paris
-    restart: always
-    network:
-      - lemp
+    <<: *confshared
 
   php:
     image: php:8.2-fpm
     container_name: php
     volumes:
       - ./site:/var/www/html
-    environment:
-      - TZ=Europe/Paris
-    restart: always
-    network:
-      - lemp
+    <<: *confshared
 
 networks:
   lemp:
