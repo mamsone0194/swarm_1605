@@ -4,17 +4,27 @@ services:
     image: traefik/whoami
     hostname: who1
     container_name: who1
-    ports:
-      - 81:80
+    networks:
+      - proxy
+      - whonet
   who2:
     image: traefik/whoami
     hostname: who2
     container_name: who2
-    ports:
-      - 82:80
+    networks:
+      - proxy
+      - whonet
   who3:
     image: traefik/whoami
     hostname: who3
     container_name: who3
-    ports:
-      - 83:80
+    networks:
+      - proxy
+      - whonet
+
+networks:
+  whonet:
+    external: false
+
+  proxy:
+    external: true
