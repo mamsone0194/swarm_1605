@@ -2,7 +2,6 @@
 x-default: &confshared
   env_file:
     - tz_file
-  restart: always
 
 services:
   www:

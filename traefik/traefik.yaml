@@ -12,3 +12,11 @@ providers:
   docker:
     endpoint: "unix:///run/docker.sock"
     exposedByDefault: false
+
+logs:
+  filepath: /var/log/traefik.log
+
+accesslog:
+  filepath: /var/log/access.log
+
+

@@ -5,6 +5,7 @@ x-default: &confshared
   restart: always
   networks:
     - lemp
+    - proxy
 
 services:
   www:
@@ -22,6 +23,10 @@ services:
     depends_on:
       - php
     <<: *confshared
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.www.rule=Host(`lemp.stage`)
+      - traefik.docker.network=proxy
 
   php:
     image: ${PHP_IMAGE_NAME}:${PHP_IMAGE_VERSION}
@@ -32,6 +37,9 @@ services:
 
 networks:
   lemp:
+
+  proxy:
+    external: true
 
 volumes:
   nginx-config:

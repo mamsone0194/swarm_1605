@@ -9,6 +9,7 @@ services:
       - ./traefik.yaml:/etc/traefik/traefik.yaml
       - /run/docker.sock:/run/docker.sock
       - ./logins.pass:/etc/traefik/logins.pass
+      - ./logs:/var/log
     restart: always
     networks:
       - proxy
