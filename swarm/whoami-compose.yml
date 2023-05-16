@@ -1,0 +1,9 @@
+---
+services:
+  whoami:
+    image: traefik/whoami:v1.8
+    container_name: who
+    ports:
+      - 80:80
+    deploy:
+      replicas: 2
